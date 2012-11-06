@@ -47,7 +47,7 @@ class GeocodeService
 
     private function call($method, AbstractRequest $request)
     {
-        return $this->getClient()
+        return (string) $this->getClient()
             ->get(array(
                 static::URL,
                 array(
