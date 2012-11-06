@@ -1,0 +1,14 @@
+{
+    "name": "bcc/google-maps",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Berny Cantos",
+            "email": "be@rny.cc"
+        }
+    ],
+    "require": {
+        "guzzle/guzzle": "*"
+
+    }
+}
