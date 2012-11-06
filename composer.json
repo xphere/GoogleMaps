@@ -9,6 +9,10 @@
     ],
     "require": {
         "guzzle/guzzle": "*"
-
+    },
+    "autoload": {
+        "psr-0": {
+            "Google\\Maps": "lib"
+        }
     }
 }
