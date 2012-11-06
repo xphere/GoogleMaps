@@ -11,6 +11,8 @@
 
 namespace Google\Maps\Geocode\Response;
 
+use Google\Maps\Geocode\Response;
+
 class JsonParser
 {
     public function parse($request)
