@@ -14,11 +14,7 @@ namespace Google\Maps\Geocode;
 use Guzzle\Http\Client;
 use Guzzle\Http\ClientInterface;
 use Google\Maps\Geocode\Request\AbstractRequest;
-use Google\Maps\Geocode\Response\AddressComponent;
-use Google\Maps\Geocode\Response\Geometry;
-use Google\Maps\Geocode\Response\Location;
-use Google\Maps\Geocode\Response\Result;
-use Google\Maps\Geocode\Response\Viewport;
+use Google\Maps\Geocode\Response\JsonParser;
 
 class GeocodeService
 {
@@ -66,42 +62,7 @@ class GeocodeService
 
     public function query(AbstractRequest $request)
     {
-        $json = json_decode($this->json($request));
-
-        foreach ($json->results as $key => $result) {
-            array_walk($result->address_components, function ($ac) {
-                return new AddressComponent($ac->long_name, $ac->short_name, $ac->types);
-            });
-            $result->geometry = isset($result->geometry) ? $this->parseGeometry($result->geometry) : null;
-            $json->results[$key] = new Result(
-                $result->formatted_address,
-                $result->address_components,
-                $result->types,
-                $result->geometry,
-                isset($result->partial_match) ? $result->partial_match : false
-            );
-        };
-
-        return new Response($json->results, $json->status);
-    }
-
-    private function parseLocation($location)
-    {
-        return new Location($location->lat, $location->lng);
-    }
-
-    private function parseViewport($viewport)
-    {
-        $southwest = $this->parseLocation($viewport->southwest);
-        $northeast = $this->parseLocation($viewport->northeast);
-        return new Viewport($southwest, $northeast);
-    }
-
-    private function parseGeometry($geometry)
-    {
-        $location = $this->parseLocation($geometry->location);
-        $viewport = $this->parseViewport($geometry->viewport);
-        $bounds = isset($geometry->bounds) ? $this->parseViewport($geometry->bounds) : null;
-        return new Geometry($location, $geometry->location_type, $viewport, $bounds);
+        $parser = new JsonParser();
+        return $parser->parse($this->json($request));
     }
 }
