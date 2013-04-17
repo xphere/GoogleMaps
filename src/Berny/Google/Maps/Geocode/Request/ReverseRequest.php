@@ -1,7 +1,7 @@
 <?php
 
 /*
-* This file is part of the Google\Maps\Geocode package
+* This file is part of the Berny\Google\Maps\Geocode package
 *
 * (c) Berny Cantos <be@rny.cc>
 *
@@ -9,7 +9,7 @@
 * file that was distributed with this source code.
 */
 
-namespace Google\Maps\Geocode\Request;
+namespace Berny\Google\Maps\Geocode\Request;
 
 class ReverseRequest extends AbstractRequest
 {

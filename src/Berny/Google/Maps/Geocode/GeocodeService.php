@@ -1,7 +1,7 @@
 <?php
 
 /*
-* This file is part of the Google\Maps\Geocode package
+* This file is part of the Berny\Google\Maps\Geocode package
 *
 * (c) Berny Cantos <be@rny.cc>
 *
@@ -9,12 +9,12 @@
 * file that was distributed with this source code.
 */
 
-namespace Google\Maps\Geocode;
+namespace Berny\Google\Maps\Geocode;
 
 use Guzzle\Http\Client;
 use Guzzle\Http\ClientInterface;
-use Google\Maps\Geocode\Request\AbstractRequest;
-use Google\Maps\Geocode\Response\JsonParser;
+use Berny\Google\Maps\Geocode\Request\AbstractRequest;
+use Berny\Google\Maps\Geocode\Response\JsonParser;
 
 class GeocodeService
 {
